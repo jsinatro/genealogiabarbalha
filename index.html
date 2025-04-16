@@ -15,6 +15,7 @@
         <table id="batismosTable" class="display compact" style="width:100%">
             <thead>
                 <tr>
+                    <th>N°</th>
                     <th>Nome</th>
                     <th>Pai</th>
                     <th>Mãe</th>
@@ -45,6 +46,7 @@
                 $('#batismosTable').DataTable({
                     data: results.data,
                     columns: [
+			{ data: 'N°'}
                         { data: 'Nome' },
                         { data: 'Pai' },
                         { data: 'Mãe' },
