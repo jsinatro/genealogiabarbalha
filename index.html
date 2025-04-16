@@ -3,29 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Registros de Batismos - Batismos 1840, jan - 1848, jun</title>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <style>
+    :root {
+        --bg-color: #f0f2f5;
+        --text-color: #333;
+        --table-header-bg: #3e8ed0;
+        --table-header-color: #fff;
+        --row-hover: #e6f0fb;
+        --even-row-bg: #f9fbfd;
+        --container-bg: #fff;
+    }
+
+    body.dark {
+        --bg-color: #1e1e1e;
+        --text-color: #e0e0e0;
+        --table-header-bg: #444;
+        --table-header-color: #e0e0e0;
+        --row-hover: #333;
+        --even-row-bg: #2a2a2a;
+        --container-bg: #2c2c2c;
+    }
+
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f0f2f5;
+        font-family: 'Segoe UI', sans-serif;
+        background-color: var(--bg-color);
         margin: 0;
         padding: 0;
-        color: #333;
+        color: var(--text-color);
+        transition: background-color 0.3s, color 0.3s;
     }
 
     h1 {
         text-align: center;
         padding-top: 30px;
-        color: #2c3e50;
+        color: var(--text-color);
     }
 
     .container {
         max-width: 1200px;
         margin: 40px auto;
-        background-color: #fff;
+        background-color: var(--container-bg);
         padding: 30px;
         box-shadow: 0 2px 10px rgba(0,0,0,0.06);
         border-radius: 12px;
+        transition: background-color 0.3s;
     }
 
     #batismosTable {
@@ -35,8 +57,8 @@
     }
 
     #batismosTable thead th {
-        background-color: #3e8ed0;
-        color: #fff;
+        background-color: var(--table-header-bg);
+        color: var(--table-header-color);
         text-align: left;
         padding: 12px 10px;
         position: sticky;
@@ -46,15 +68,15 @@
 
     #batismosTable tbody td {
         padding: 10px;
-        border-bottom: 1px solid #e0e0e0;
+        border-bottom: 1px solid #ccc;
     }
 
     #batismosTable tbody tr:nth-child(even) {
-        background-color: #f9fbfd;
+        background-color: var(--even-row-bg);
     }
 
     #batismosTable tbody tr:hover {
-        background-color: #e6f0fb;
+        background-color: var(--row-hover);
     }
 
     .dataTables_wrapper {
@@ -100,6 +122,27 @@
         color: #555;
     }
 
+    .theme-toggle {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .theme-toggle button {
+        background-color: #3e8ed0;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .theme-toggle button:hover {
+        background-color: #2d6fac;
+    }
+
     @media (max-width: 768px) {
         .container {
             padding: 15px;
@@ -113,25 +156,29 @@
             width: 100%;
         }
     }
-</style>
-
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1>Registros de Batismos - Batismos 1840, jan - 1848, jun</h1>
+        <h1>📜 Registros de Batismos - 1840, jan - 1848, jun </h1>
+
+        <div class="theme-toggle">
+            <button onclick="toggleTheme()">🌙 Alternar tema</button>
+        </div>
+
         <table id="batismosTable" class="display compact" style="width:100%">
             <thead>
                 <tr>
-                    <th>Número</th>
-                    <th>Nome</th>
-                    <th>Pai</th>
-                    <th>Mãe</th>
-                    <th>Nascimento</th>
-                    <th>Batizado</th>
-                    <th>Padrinho</th>
-                    <th>Madrinha</th>
-                    <th>Padre</th>
-                    <th>OBS</th>
+                    <th>🔢 Número</th>
+                    <th>👶 Nome</th>
+                    <th>👨 Pai</th>
+                    <th>👩 Mãe</th>
+                    <th>📅 Nascimento</th>
+                    <th>🙏 Batizado</th>
+                    <th>🧔 Padrinho</th>
+                    <th>👵 Madrinha</th>
+                    <th>⛪ Padre</th>
+                    <th>📝 OBS</th>
                 </tr>
             </thead>
         </table>
@@ -141,7 +188,6 @@
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
     <script>
     $(document).ready(function() {
         Papa.parse("Batismos_Barbalha.csv", {
@@ -153,7 +199,7 @@
                 $('#batismosTable').DataTable({
                     data: results.data,
                     columns: [
-                        { data: 'Número' },  // Nova coluna
+                        { data: 'Número' },
                         { data: 'Nome' },
                         { data: 'Pai' },
                         { data: 'Mãe' },
@@ -165,7 +211,7 @@
                         { data: 'OBS', defaultContent: "" }
                     ],
                     pageLength: 25,
-                    order: [[0, 'asc']],  // Ordena pelo número inicialmente
+                    order: [[0, 'asc']],
                     language: {
                         url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
                     }
@@ -173,6 +219,10 @@
             }
         });
     });
+
+    function toggleTheme() {
+        document.body.classList.toggle('dark');
+    }
     </script>
 </body>
 </html>
