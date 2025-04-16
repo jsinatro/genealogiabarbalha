@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros de Batismos - Barbalha</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <style>
+        .dataTables_filter, .dataTables_length { margin: 10px; }
+        .dataTables_wrapper { padding: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registros de Batismos - Barbalha (1840)</h1>
+        <table id="batismosTable" class="display compact" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Pai</th>
+                    <th>Mãe</th>
+                    <th>Nascimento</th>
+                    <th>Batizado</th>
+                    <th>Padrinho</th>
+                    <th>Madrinha</th>
+                    <th>Padre</th>
+                    <th>OBS</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
 
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        Papa.parse("Batismos_Barbalha.csv", {
+            download: true,
+            header: true,
+            dynamicTyping: true,
+            skipEmptyLines: true,
+            complete: function(results) {
+                $('#batismosTable').DataTable({
+                    data: results.data,
+                    columns: [
+                        { data: 'Nome' },
+                        { data: 'Pai' },
+                        { data: 'Mãe' },
+                        { data: 'Nascimento' },
+                        { data: 'Batizado' },
+                        { data: 'Padrinho' },
+                        { data: 'Madrinha' },
+                        { data: 'Padre' },
+                        { data: 'OBS.' }
+                    ],
+                    pageLength: 25,
+                    language: {
+                        url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</body>
+</html>
