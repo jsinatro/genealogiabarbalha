@@ -7,6 +7,7 @@
     <style>
         .dataTables_filter, .dataTables_length { margin: 10px; }
         .dataTables_wrapper { padding: 20px; }
+        th { background-color: #f5f5f5; }
     </style>
 </head>
 <body>
@@ -15,7 +16,7 @@
         <table id="batismosTable" class="display compact" style="width:100%">
             <thead>
                 <tr>
-                    <th>N°</th>
+                    <th>Número</th>
                     <th>Nome</th>
                     <th>Pai</th>
                     <th>Mãe</th>
@@ -46,7 +47,7 @@
                 $('#batismosTable').DataTable({
                     data: results.data,
                     columns: [
-			{ data: 'N°'}
+                        { data: 'Número' },  // Nova coluna
                         { data: 'Nome' },
                         { data: 'Pai' },
                         { data: 'Mãe' },
@@ -58,6 +59,7 @@
                         { data: 'OBS.' }
                     ],
                     pageLength: 25,
+                    order: [[0, 'asc']],  // Ordena pelo número inicialmente
                     language: {
                         url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/pt-BR.json'
                     }
