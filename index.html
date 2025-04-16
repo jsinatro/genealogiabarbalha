@@ -5,13 +5,29 @@
     <title>Registros de Batismos - Barbalha</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <style>
-        /* .dataTables_filter, .dataTables_length { margin: 10px; }
-        .dataTables_wrapper { padding: 20px; }
-        th { background-color: #f5f5f5; } */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
 
-    .dataTables_filter, .dataTables_length { margin: 10px; }
-    .dataTables_wrapper { padding: 20px; }
-    th { background-color: #f5f5f5; }
+    h1 {
+        text-align: center;
+        padding-top: 20px;
+        color: #2c3e50;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: auto;
+        background-color: #ffffff;
+        padding: 30px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        border-radius: 8px;
+        margin-top: 40px;
+    }
 
     #batismosTable {
         border-collapse: collapse;
@@ -20,46 +36,69 @@
     }
 
     #batismosTable thead th {
-        background-color: #004080;
+        background-color: #3e8ed0;
         color: white;
         position: sticky;
         top: 0;
         z-index: 10;
+        text-align: left;
+        padding: 10px;
     }
 
-    #batismosTable td, #batismosTable th {
-        padding: 8px 10px;
+    #batismosTable td {
+        padding: 10px;
         border-bottom: 1px solid #ddd;
     }
 
     #batismosTable tbody tr:nth-child(even) {
-        background-color: #f9f9f9;
+        background-color: #f8f9fa;
     }
 
     #batismosTable tbody tr:hover {
-        background-color: #d0ebff;
+        background-color: #e3f2fd;
+    }
+
+    .dataTables_wrapper {
+        padding: 20px 0;
+    }
+
+    .dataTables_filter, .dataTables_length {
+        margin-bottom: 15px;
     }
 
     .dataTables_wrapper .dataTables_filter input {
-        padding: 5px;
-        border-radius: 4px;
+        padding: 6px 10px;
+        border-radius: 5px;
         border: 1px solid #ccc;
+        width: 250px;
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button {
-        padding: 5px 10px;
+        padding: 6px 12px;
         margin: 2px;
-        background-color: #e0e0e0;
+        background-color: #f0f0f0;
         border-radius: 4px;
-        border: none;
+        border: 1px solid #ccc;
         cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background-color: #d0e6f7;
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button.current {
-        background-color: #004080;
+        background-color: #3e8ed0;
         color: white !important;
+        border: 1px solid #3e8ed0;
     }
-    </style>
+
+    .dataTables_info {
+        margin-top: 10px;
+        font-size: 13px;
+        color: #555;
+    }
+</style>
 </head>
 <body>
     <div class="container">
