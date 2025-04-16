@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <style>
     body {
-        font-family: Arial, sans-serif;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         background-color: #f0f2f5;
         margin: 0;
         padding: 0;
@@ -15,69 +15,70 @@
 
     h1 {
         text-align: center;
-        padding-top: 20px;
+        padding-top: 30px;
         color: #2c3e50;
     }
 
     .container {
         max-width: 1200px;
-        margin: auto;
-        background-color: #ffffff;
+        margin: 40px auto;
+        background-color: #fff;
         padding: 30px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        border-radius: 8px;
-        margin-top: 40px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        border-radius: 12px;
     }
 
     #batismosTable {
         border-collapse: collapse;
         width: 100%;
-        font-size: 14px;
+        font-size: 15px;
     }
 
     #batismosTable thead th {
         background-color: #3e8ed0;
-        color: white;
+        color: #fff;
+        text-align: left;
+        padding: 12px 10px;
         position: sticky;
         top: 0;
         z-index: 10;
-        text-align: left;
-        padding: 10px;
     }
 
-    #batismosTable td {
+    #batismosTable tbody td {
         padding: 10px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid #e0e0e0;
     }
 
     #batismosTable tbody tr:nth-child(even) {
-        background-color: #f8f9fa;
+        background-color: #f9fbfd;
     }
 
     #batismosTable tbody tr:hover {
-        background-color: #e3f2fd;
+        background-color: #e6f0fb;
     }
 
     .dataTables_wrapper {
-        padding: 20px 0;
+        padding: 10px 0;
     }
 
-    .dataTables_filter, .dataTables_length {
-        margin-bottom: 15px;
+    .dataTables_filter,
+    .dataTables_length {
+        margin-bottom: 20px;
     }
 
     .dataTables_wrapper .dataTables_filter input {
-        padding: 6px 10px;
-        border-radius: 5px;
+        padding: 6px 12px;
+        border-radius: 6px;
         border: 1px solid #ccc;
-        width: 250px;
+        width: 260px;
+        background-color: #fff;
     }
 
     .dataTables_wrapper .dataTables_paginate .paginate_button {
         padding: 6px 12px;
         margin: 2px;
         background-color: #f0f0f0;
-        border-radius: 4px;
+        border-radius: 6px;
         border: 1px solid #ccc;
         cursor: pointer;
         transition: background-color 0.3s;
@@ -98,7 +99,22 @@
         font-size: 13px;
         color: #555;
     }
+
+    @media (max-width: 768px) {
+        .container {
+            padding: 15px;
+        }
+
+        #batismosTable {
+            font-size: 13px;
+        }
+
+        .dataTables_wrapper .dataTables_filter input {
+            width: 100%;
+        }
+    }
 </style>
+
 </head>
 <body>
     <div class="container">
